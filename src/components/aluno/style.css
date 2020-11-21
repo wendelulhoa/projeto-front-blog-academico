@@ -1,0 +1,173 @@
+.card-turma{
+    margin-bottom: 30px;
+    display: block;
+    float: left;
+    width: 100%;
+    
+}
+
+.card-turma-head{
+    background: #fff;
+    padding: 0px 0px 0px 0px;
+    box-shadow: 0 0 5px #aaa;
+    position: relative;
+
+}
+.card-turma-head h3{
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-weight: 300;
+    margin-top: 20px;
+    padding: 0 20px;
+    margin-bottom: 10px; 
+    color: #3568b2;
+    
+}
+.card-turma-body{
+    background: #dddddd;
+    float: left;
+    width: 100%;
+    padding: 12px 0;
+    font-size: 12px;
+    color: #888888;
+ 
+}
+.txt-ultimo-arquivos{
+    margin: 7px 0 0 21px;
+}
+.list-arquivos p{
+  font-style: italic;
+}
+.blogPost{
+  margin: 0;
+}
+
+.blogPost li{
+    display: inline-block;
+    float: left;
+    background: #efefef;
+    border-radius: 4px;
+    line-height: 20px;
+    overflow: hidden;
+    padding: 7px 10px;
+    height: 32px;
+    margin-right: 15px;
+}
+.blogPost li a{
+  color:#888888;
+}
+.icone-card{
+  width: 100%;
+  background-color: #7dacef;
+  min-height: 88px;
+  color: #fff;
+  text-align: center;
+  font-size: 12px;
+}
+.icone-card i{
+    font-size: 36px;
+    margin-top: 18px;
+}
+.nome-professor{
+    color:#F1AF00;
+    margin: 0 0 15px 20px;
+    font-size: 12px;
+}
+.nome-professor i{
+  color:#FBB702;
+  margin-right: 5px;
+}
+
+
+@media (min-width:641px) and (max-width:768px)  {
+  .blogPost li{
+    margin-bottom: 5px;
+  }
+  .icone-card{
+    min-height: 114px;
+  }
+  .icone-card i{
+    margin-top: 32px;
+  }
+  .select-topo{
+    margin:0;
+  }
+  .linha-tit{
+    margin:15px 0 25px 0;
+  }
+}
+
+@media (min-width:481px) and (max-width:640px)  {
+  .blogPost li{
+    margin-bottom: 5px;
+  }
+  .icone-card{
+    min-height: 76px;
+  }
+  .icone-card i{
+    margin-top: 15px;
+    font-size: 30px;
+  }
+  .select-topo{
+    margin:0;
+  }
+  .linha-tit{
+    margin:15px 0 25px 0;
+  }
+}
+
+@media (min-width:351px) and (max-width:480px)  {
+  .blogPost li{
+    margin-bottom: 5px;
+  }
+  .icone-card{
+    min-height: 65px;
+  }
+  .icone-card i{
+    font-size: 27px;
+    margin-top: 10px;
+  }
+  .linha-tit{
+    margin:5px 0 20px 0;
+  }
+
+}
+
+@media(max-width:350px) {
+  .blogPost li{
+    margin-bottom: 5px;
+  }
+  .icone-card{
+    height: auto;
+    min-height: 70px
+  }
+  .icone-card i{
+    font-size: 30px;
+    margin-top: 10px;
+  }
+  .select-topo{
+    display: none;
+  }
+  .linha-tit{
+    margin:5px 0 25px 0;
+  }
+  .page-header{
+    margin-bottom: 0px;
+  }
+
+}
+
+.icone-card, .icone-card-ead {
+    width: 100%;
+    min-height: 88px;
+    color: #fff;
+    text-align: center;
+    font-size: 12px;
+}
+
+.icone-card-ead {
+    background-color: #5cb85c;
+}
+ .icone-card-ead i {
+        font-size: 36px;
+        margin-top: 14px;
+}
