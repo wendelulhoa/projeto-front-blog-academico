@@ -1,6 +1,6 @@
 <template>
   <div>
-      <Menu/>
+      <Menu tipo = "professor"/>
     <router-view></router-view>
   </div>
 </template>

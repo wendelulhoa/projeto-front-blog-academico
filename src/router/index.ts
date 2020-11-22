@@ -1,4 +1,3 @@
-import { login } from './../app/http/axios/login/login';
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import Login from '../views/login/Login.vue';
@@ -7,9 +6,9 @@ import HomeAdmin from '@/views/admin/Home.vue';
 import Find from "@/app/controllers/admin/HomeAdmin";
 import {store} from "@/store/index";
 import AlterarAdmin from "@/views/admin/Update.vue";
+import CadastrarAtividade from '@/views/professor/CadastraAtividade.vue';
 Vue.use(VueRouter)
-import LoginController from '@/app/controllers/login/LoginController';
-import { nextTick } from 'vue/types/umd';
+
 const routes: Array<RouteConfig> = [
   { path: '/', component: Login },
   { path: '/admin', component: HomeAdmin,
@@ -23,6 +22,10 @@ const routes: Array<RouteConfig> = [
   },
   { path: '/admin/cadastro', component: CadastrosAdmin },
   { path: '/admin/alterar', component: AlterarAdmin },
+
+  { path: '/professor/cadastro', component: CadastrarAtividade },
+  { path: '/admin/cadastro', component: CadastrosAdmin },
+  { path: '/admin/cadastro', component: CadastrosAdmin },
   {
     path: '/Login',
     name: 'Login',

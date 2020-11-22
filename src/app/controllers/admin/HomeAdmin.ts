@@ -5,7 +5,7 @@ export default class HomeAdmin{
       return blog.find('admin/buscar?tipo=professores' )
     }
     public findAluno(){
-    return blog.find('admin/buscar?tipo=alunos' )
+    return blog.find('admin/buscar?tipo=alunos')
     }
     public findCurso(){
         return blog.find('admin/buscar?tipo=cursos' )

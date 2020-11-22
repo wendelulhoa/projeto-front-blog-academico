@@ -73,15 +73,35 @@
 
               <ul class="navbar-nav flex-column mt-4">
                 <li class="nav-item">
-                  <router-link to="/admin" class="nav-link text-white current mb-3">
+                  <router-link to="/admin" v-if= "tipo == 'admin'" class="nav-link text-white current mb-3">
                   Inicio
                   </router-link>
-                  
+                  <router-link to="/admin" v-if= "tipo == 'professor'" class="nav-link text-white current mb-3">
+                  Inicio
+                  </router-link>
+                  <router-link to="/admin" v-if= "tipo == 'aluno'" class="nav-link text-white current mb-3">
+                  Inicio
+                  </router-link>
                 </li>
                 <li class="nav-item">
                   <router-link
                     class="nav-link text-white link mb-3"
                     to="/admin/cadastro"
+                    v-if= "tipo == 'admin'"
+                    >Cadastro
+                  </router-link
+                  >
+                  <router-link
+                    class="nav-link text-white link mb-3"
+                    to="/professor/cadastro"
+                    v-if= "tipo == 'professor'"
+                    >Cadastro Atividade
+                  </router-link
+                  >
+                  <router-link
+                    class="nav-link text-white link mb-3"
+                    to="/admin/cadastro"
+                    v-if= "tipo == 'aluno'"
                     >Cadastro
                   </router-link
                   >
@@ -121,7 +141,15 @@
     </nav>
   </div>
 </template>
-
+<script>
+export default {
+  props:{
+    tipo:{
+      type: String
+    }
+  }
+}
+</script>
 <style >
 @import "./style.css";
 </style>
