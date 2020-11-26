@@ -49,13 +49,6 @@
               <label class="form-label">SENHA</label>
               <input type="text" class="form-control" placeholder="SENHA" name="password"/>
             </div>
-            <div class="form-group ">
-              <label for="inputState">CURSOS</label>
-              <select id="inputState" class="form-control">
-                <option>ESCOLHA UM CURSO...</option>
-                <option>SI</option>
-              </select>
-            </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
@@ -134,7 +127,24 @@ export default {
       const form = document.forms.namedItem("formProf");
       const data = new FormData(form);
       blog.create("professor/cadastro", data).then((e) => {
-        console.log(e.data);
+      
+        this.$bvToast.toast(
+            "atividade cadastrada com sucesso",
+            {
+              title: "sucesso",
+              variant: "success",
+              solid: true,
+            }
+          );
+      }).catch(e=>{
+        this.$bvToast.toast(
+            "verifique os campos informados e tente novamente",
+            {
+              title: "ocorreu um erro",
+              variant: "danger",
+              solid: true,
+            }
+          );
       });
     }
   }
