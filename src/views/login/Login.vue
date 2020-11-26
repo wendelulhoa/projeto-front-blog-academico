@@ -97,7 +97,7 @@ export default {
           
         if(e.data.user['adm'] == 0){
           this.$router.push("/admin");
-         blog.find(`admin/find?tipo=nome&matricula=${e.data.user['matricula']}`).then(e=>{
+         blog.find(`admin/buscar?tipo=nome&matricula=${e.data.user['matricula']}`).then(e=>{
             localStorage.setItem('nome',e.data[0].nome_admin)
             store.commit('setNome',localStorage.getItem('nome'))
           })
@@ -117,7 +117,7 @@ export default {
          this.$router.push("/professor");
         }else{
          blog.find(`aluno/find?tipo=nome&matricula=${e.data.user['matricula']}`).then(e=>{
-            localStorage.setItem('nome',e.data[0].nome_professor)
+            localStorage.setItem('nome',e.data[0].nome_aluno)
             store.commit('setNome',localStorage.getItem('nome'))
           })
           this.$router.push("/aluno");

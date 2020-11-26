@@ -1,7 +1,7 @@
 <template>
   <div>
     <head>
-      <title>professor</title>
+      <title>blog academico</title>
     </head>
       <Menu :tipo= "type" v-if="!logged == false"/>
     <router-view></router-view>
