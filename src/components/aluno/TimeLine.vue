@@ -17,7 +17,7 @@
           </div>
           <div class="timeline-body">
             <p>{{ item.texto_add }}</p>
-            <form @submit.prevent="send(item.id)" enctype="multipart/form-data" :name="item.id">
+            <form @submit.prevent="send(item.id)" v-if="item.entrega == true" enctype="multipart/form-data" :name="item.id">
               <div>
                 <input name="file" type="file" />
               </div>
@@ -30,6 +30,7 @@
             </form>
             <a
               :href="link"
+              v-if="item.path_atividade"
               @click="linkDown(item.path_atividade)"
               target="_blank"
               class="btn btn-success"
@@ -63,7 +64,6 @@ export default {
       .find(`aluno/find?tipo=atividade&cod=${this.$route.params.id}`)
       .then((e) => {
         this.changeAtividade(e.data[0].atividade);
-        console.log(e.data[0].atividade)
       });
   },
   methods: {
@@ -77,7 +77,23 @@ export default {
       const form = document.forms.namedItem(id);
       const data = new FormData(form);
       blog.create("aluno/cadastro/atividade", data).then((e) => {
-        console.log(e);
+        this.$bvToast.toast(
+            "cadastrado com sucesso",
+            {
+              title: "sucesso",
+              variant: "success",
+              solid: true,
+            }
+          );
+      }).catch(e=>{
+        this.$bvToast.toast(
+            "verifique o arquivo",
+            {
+              title: "ocorreu um erro",
+              variant: "danger",
+              solid: true,
+            }
+          );
       });
     },
   },

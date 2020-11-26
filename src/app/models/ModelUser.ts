@@ -2,9 +2,10 @@
 export default {
     state:{
         arrayProf: [],
-        matricula: "",
-        adm: "",
-        isLogged: false
+        matricula: '',
+        adm: '',
+        isLogged: false,
+        nome: ''
     },
     getters:{
         getMatricula(state: any){
@@ -15,6 +16,9 @@ export default {
         },
         getLogged(state: any){
             return state.isLogged
+        },
+        getNome(state: any){
+            return state.nome
         }
     },
     mutations:{
@@ -26,6 +30,9 @@ export default {
         },
         setLogged(state: any, value: any){
             state.isLogged = value
+        },
+        setNome(state: any, value: any){
+            state.nome = value
         }
     },
     actions:{

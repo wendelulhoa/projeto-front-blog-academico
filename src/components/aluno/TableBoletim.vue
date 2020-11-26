@@ -26,7 +26,7 @@
                     <td >{{item.nome_materia}}</td>
                     <td >{{ item.nota_a1 }}</td>
                     <td >{{ item.nota_a2 }}</td>
-                    <td >{{ item.media_final}}</td>
+                    <td >{{ soma(item.nota_a2, item.nota_a1 )}}</td>
                   </tr>
                 </tbody>
               </table>
@@ -41,10 +41,14 @@
 </template>
 
 <script>
-import {mapGetters} from "vuex";
 
 export default {
  props:{
+   data() {
+     return {
+       teste: 2
+     }
+   },
    arrayContent:{
      type: Array
    },
@@ -54,9 +58,11 @@ export default {
    },
   
    methods: {
-     atividade(){
-       console.log('aaa')
-     }
+     soma(a1, a2){
+       let soma = parseFloat(a1) + parseFloat(a2);
+       soma = soma / 2;
+        return soma;
+      } 
    },
 };
 </script>

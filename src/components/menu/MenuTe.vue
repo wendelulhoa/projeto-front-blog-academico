@@ -3,7 +3,7 @@
     <nav
       class="navbar navbar-expand-lg navbar-dark bg-dark d-xl-none d-lg-none d-md-none"
     >
-      <a class="navbar-brand" href="#">Mercado Ulhoa</a>
+      <a class="navbar-brand" href="#">escola do zezinho</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -39,7 +39,7 @@
 
               <div class="borda-baixo pb-3 pt-3">
                 <i class="fas fa-user text-light fa-lg mr-3"></i>
-                <a href="" class="text-white" @click.prevent>wendel ulhoa</a>
+                <a href="" class="text-white" @click.prevent>{{nome}}</a>
               </div>
 
               <ul class="navbar-nav flex-column mt-4">
@@ -78,31 +78,9 @@
                   >
                 </li>
                 <li class="nav-item">
-                  <router-link
-                    class="nav-link text-white link mb-3"
-                    to="/admin/cadastro"
-                    v-if= "tipo == 0"
-                    >sair
-                  </router-link
-                  >
-                  <router-link
-                    class="nav-link text-white link mb-3"
-                    to="/professor/cadastro"
-                    v-if= "tipo == 1"
-                    >sair
-                  </router-link
-                  >
-                  <router-link
-                    class="nav-link text-white link mb-3"
-                    to="/admin/cadastro"
-                    v-if= "tipo == 2"
-                    >sair
-                  </router-link
-                  >
+                  <a href="/login" class="nav-link text-white link mb-3" @click="sair">sair</a>
                 </li>
-                
                
-                
               </ul>
             </div>
           </div>
@@ -112,10 +90,22 @@
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 export default {
   props:{
     tipo:{
-      type: Number
+      type: String
+    }
+  },
+  computed:{
+    ...mapGetters({
+      nome: 'getNome'
+    })
+  },
+  methods:{
+    sair(){
+      localStorage.clear();
+      this.$route.push('/login')
     }
   }
 }

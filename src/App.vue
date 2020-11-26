@@ -1,7 +1,9 @@
 <template>
   <div>
-      <Menu :tipo= "type" v-if="logged == true"/>
-     
+    <head>
+      <title>professor</title>
+    </head>
+      <Menu :tipo= "type" v-if="!logged == false"/>
     <router-view></router-view>
   </div>
 </template>
@@ -18,6 +20,8 @@ export default {
      logged:'getLogged',
      type:'getAdm'
     })
+ },
+ methods:{
  }
 }
 </script>

@@ -1,7 +1,11 @@
 <template>
   <div class="p-2">
     <div class="card">
-      <form @submit.prevent="send($event)" enctype="multipart/form-data" name="atividade">
+      <form
+        @submit.prevent="send($event)"
+        enctype="multipart/form-data"
+        name="atividade"
+      >
         <div class="card-header">
           <div>
             <h3 class="card-title">Cadastro {{ type }}</h3>
@@ -17,14 +21,20 @@
                   class="form-control"
                   name="titulo"
                   placeholder="titulo atividade"
-                  v-model="data.titulo"
                 />
+                <div class="form-group pt-2">
+                  <label>para entregar ?</label>
+                  <select name="entrega" class="form-control">
+                    <option value="0">nao</option>
+                    <option value="1">sim</option>
+                  </select>
+                </div>
                 <div class="col-sm-12">
-                  <input  name="file" type="file" />
+                  <input name="file" type="file" />
                 </div>
               </div>
             </div>
-            
+
             <div class="col-md-6">
               <div class="form-group">
                 <label class="form-label">data entrega</label>
@@ -33,7 +43,6 @@
                   class="form-control"
                   placeholder="codigo Materia"
                   name="data"
-                  v-model="data.data"
                 />
               </div>
               <textarea
@@ -41,11 +50,11 @@
                 placeholder="escreva algo explicativo da atividade..."
                 rows="3"
                 name="textoAdd"
-                v-model="data.textoAdd"
               >
               </textarea>
-              <input name="codMateria" :value="codMateria" hidden>
-              <input name="matricula" :value="codMateria" hidden>
+
+              <input name="codMateria" :value="codMateria" hidden />
+              <input name="matricula" :value="matricula" hidden />
             </div>
           </div>
         </div>
@@ -62,40 +71,46 @@
 <script>
 //import Admin from '@/app/controllers/admin/AdminController'
 import { blog } from "@/app/http/axios/upload/blog";
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 export default {
-  data() {
-    return {
-      data: [{
-        titulo: "",
-        textoAdd: "",
-        data:"",
-        file:""
-      }],
-      file: null
-    };
-  },
+ 
   props: {
     type: {
       Type: String,
     },
   },
-  computed:{
+  computed: {
     ...mapGetters({
-      codMateria:"getCodMateria",
-      matricula: "getMatricula"
-    })
+      codMateria: "getCodMateria",
+      matricula: "getMatricula",
+    }),
   },
   methods: {
-    
-    send(e) {
+    send() {
       const form = document.forms.namedItem("atividade");
       const data = new FormData(form);
-    
+
       blog.create("professor/cadastro/atividade", data).then((e) => {
-        console.log(e.data);
+
+        this.$bvToast.toast(
+            "atividade cadastrada com sucesso",
+            {
+              title: "sucesso",
+              variant: "success",
+              solid: true,
+            }
+          );
+      }).catch(e=>{
+        this.$bvToast.toast(
+            "verifique os campos informados e tente novamente",
+            {
+              title: "ocorreu um erro",
+              variant: "danger",
+              solid: true,
+            }
+          );
       });
-    }
+    },
   },
 };
 </script>

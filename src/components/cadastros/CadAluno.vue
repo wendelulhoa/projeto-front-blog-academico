@@ -1,5 +1,6 @@
 <template>
   <div class="p-2">
+    <form @submit.prevent="cadastrar()" name="aluno">
     <div class="card">
       <div class="card-header">
         <div>
@@ -14,22 +15,21 @@
               <input
                 type="text"
                 class="form-control"
-                name="example-text-input"
+                name="nome"
                 placeholder="Nome"
-                v-model="data.nome"
               />
             </div>
             <div class="form-group">
               <label class="form-label">cpf</label>
-              <input type="text" class="form-control" placeholder="CPF" v-model="data.cpf"/>
+              <input type="text" class="form-control" placeholder="CPF" name="cpf"/>
             </div>
             <div class="form-group">
               <label class="form-label">RG</label>
-              <input type="text" class="form-control" placeholder="RG" v-model="data.rg"/>
+              <input type="text" class="form-control" placeholder="RG" name="rg"/>
             </div>
             <div class="form-group">
               <label class="form-label">ENDERECO</label>
-              <input type="text" class="form-control" placeholder="ENDERECO" v-model="data.endereco"/>
+              <input type="text" class="form-control" placeholder="ENDERECO" name="endereco"/>
             </div>
             <div class="form-group">
               <label class="form-label">COMPLEMENTO</label>
@@ -37,33 +37,32 @@
                 type="text"
                 class="form-control"
                 placeholder="COMPLEMENTO"
-                v-model="data.complemento"
+                name="complemento"
               />
             </div>
             <div class="form-group">
               <label class="form-label">CIDADE</label>
-              <input type="text" class="form-control" placeholder="CIDADE" v-model="data.cidade"/>
+              <input type="text" class="form-control" placeholder="CIDADE" name="cidade"/>
             </div>
             <div class="form-group">
               <label class="form-label">SENHA</label>
-              <input type="text" class="form-control" placeholder="SENHA" v-model="data.password"/>
+              <input type="text" class="form-control" placeholder="SENHA" name="senha"/>
             </div>
-            <div class="form-group ">
-              <label for="inputState">CURSOS</label>
-              <select id="inputState" class="form-control">
-                <option>ESCOLHA UM CURSO...</option>
-                <option>SI</option>
+            <div class="form-group">
+              <label >CURSOS</label>
+              <select name="curso" class="form-control">
+                <option  v-for="(item, index) in cursos" :key="index" :value="item.id">{{item.nome_curso}}</option>
               </select>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <label class="form-label">MATRICULA</label>
-              <input type="text" class="form-control" placeholder="MATRICULA" v-model="data.matricula"/>
+              <input type="text" class="form-control" placeholder="MATRICULA" name="matricula"/>
             </div>
             <div class="form-group">
               <label class="form-label">NOME MÃE</label>
-              <input type="text" class="form-control" placeholder="NOME MÃE" v-model="data.nomeMae"/>
+              <input type="text" class="form-control" placeholder="NOME MÃE" name="nomeMae"/>
             </div>
             <div class="form-group">
               <label class="form-label">DATA NASCIMENTO</label>
@@ -71,12 +70,12 @@
                 type="text"
                 class="form-control"
                 placeholder="DATA NASCIMENTO"
-                v-model="data.dataNasc"
+                name="dataNasc"
               />
             </div>
             <div class="form-group">
               <label class="form-label">BAIRRO</label>
-              <input type="text" class="form-control" placeholder="ENDERECO" v-model="data.bairro"/>
+              <input type="text" class="form-control" placeholder="ENDERECO" name="bairro"/>
             </div>
             <div class="form-group">
               <label class="form-label">ESTADO</label>
@@ -84,16 +83,16 @@
                 type="text"
                 class="form-control"
                 placeholder="COMPLEMENTO"
-                v-model="data.estado"
+                name="bairro"
               />
             </div>
             <div class="form-group">
               <label class="form-label">NUMERO</label>
-              <input type="text" class="form-control" placeholder="NUMERO" v-model="data.numero"/>
+              <input type="text" class="form-control" placeholder="NUMERO" name="numero"/>
             </div>
             <div class="form-group ">
               <label for="inputState">TURNO</label>
-              <select id="inputState" class="form-control">
+              <select  class="form-control">
                 <option>NOTURNO</option>
                 <option>MATUTINO</option>
                 <option>VESPERTINO</option>
@@ -104,34 +103,20 @@
         </div>
       </div>
       <div class="text-center pb-1">
-        <a  class="btn btn-primary" @click="cadastrar">salvar alterações</a>
+        <button  class="btn btn-primary" type="submit">salvar alterações</button>
       </div>
+      </form>
     </div>
 
 </template>
 
 <script>
 import Aluno from '@/app/controllers/aluno/AlunoController'
+import {blog} from '@/app/http/axios/api/blog'
 export default {
   data() {
     return {
-      data: {
-        nome: "",
-        matricula: "",
-        cpf: "",
-        nomeMae: "",
-        dataNasc:"",
-        rg: "",
-        password: "",
-        endereco: "",
-        complemento:"",
-        bairro: "",
-        estado: "",
-        cidade: "",
-        numero:"",
-        codCurso: "",
-        codTurno: ""
-      }
+      cursos: []
     }
   },
    props:{
@@ -139,10 +124,35 @@ export default {
      Type: String,
    }
  },
+ mounted(){
+  
+      blog.find("aluno/find?tipo=cursos").then((e) => {
+        this.cursos = e.data
+      });
+ },
   methods:{
-    cadastrar(){
-      const cadastrar = new Aluno();
-      cadastrar.cadastro(this.data);
+   cadastrar(){
+      const form = document.forms.namedItem("aluno");
+      const data = new FormData(form);
+      blog.create("aluno/cadastro", data).then((e) => {
+        this.$bvToast.toast(
+            "cadastrado com sucesso",
+            {
+              title: "sucesso",
+              variant: "success",
+              solid: true,
+            }
+          );
+      }).catch(e=>{
+        this.$bvToast.toast(
+            "verifique os campos informados e tente novamente",
+            {
+              title: "ocorreu um erro",
+              variant: "danger",
+              solid: true,
+            }
+          );
+      });
     }
   }
 }

@@ -17,6 +17,9 @@
       <b-tab title="cadastrar curso">
         <b-card-text><CadCurso/></b-card-text>
       </b-tab>
+      <b-tab title="cadastrar turma">
+        <b-card-text><CadTurma/></b-card-text>
+      </b-tab>
     </b-tabs>
   </b-card>
 </div>
@@ -29,6 +32,7 @@ import CadCurso from "@/components/cadastros/CadCurso";
 import CadAdmin from "@/components/cadastros/CadAdmin";
 import CadAluno from "@/components/cadastros/CadAluno";
 import CadProfessor from "@/components/cadastros/Cadprofessor";
+import CadTurma from "@/components/cadastros/CadTurma";
 import {mapActions, mapGetters} from "vuex";
 import {blog} from "@/app/http/axios/api/blog"
 export default {
@@ -37,7 +41,8 @@ export default {
     CadCurso,
     CadAdmin,
     CadAluno,
-    CadProfessor
+    CadProfessor,
+    CadTurma
   },
 
   methods:{

@@ -25,8 +25,8 @@
             name="nota"
           />
         </div>
-        <input type="text" name="matricula" :value="matricula" >
-        <input type="text" name="cod" :value="codMateria" >
+        <input type="text" name="matricula" :value="matricula" hidden>
+        <input type="text" name="cod" :value="codMateria" hidden>
         <button type="submit" class="btn btn-primary">enviar</button>
       </form>
       <div class="d-flex flex-nowrap form-row">

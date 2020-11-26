@@ -15,7 +15,6 @@ import AlterarAdmin from "@/views/admin/Update.vue";
 import HomeAluno from "@/views/aluno/Home.vue"
 import AtividadesAluno from "@/views/aluno/Atividades.vue"
 import MateriasAluno from "@/views/aluno/Materias.vue"
-import Boletim from "@/views/aluno/Boletim.vue"
 //fim componentes aluno
 
 // componentes do professor
@@ -27,7 +26,6 @@ Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
   { path: '/', component: Login },
-
   // rotas admin
   { path: '/admin', component: HomeAdmin,
     beforeEnter:(to, from, next)=>{
@@ -64,8 +62,8 @@ const routes: Array<RouteConfig> = [
   // fim rotas professor
   
   {
-    path: '/Login',
-    name: 'Login',
+    path: '/login',
+    name: 'login',
     component: Login,
   },
 
@@ -77,8 +75,16 @@ const router = new VueRouter({
   routes
 });
 router.beforeEach((to, from, next) => {
+  //const isAuthenticated = store.getters.getLogged;
   const isAuthenticated = true;
-  if (to.name !== 'Login' && !isAuthenticated) next({ name: 'Login' })
-  else next()
+  if (to.name !== 'login' && !isAuthenticated) next({ name: 'login' })
+  else{
+    store.commit('setLogged',localStorage.getItem('isLogged'))
+    store.commit('setAdm',localStorage.getItem('adm'))
+    store.commit('setMatricula',localStorage.getItem('matricula'))
+    store.commit('setNome',localStorage.getItem('nome'))
+    store.commit('setCodMateria',localStorage.getItem('codMateria'))
+    next()
+  }
 })
 export default router
