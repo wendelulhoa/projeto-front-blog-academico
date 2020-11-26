@@ -1,5 +1,5 @@
 import {http} from './config'
-import cors from 'cors'
+
 export const blog = ({
 
     create: async(url: string, data: any) =>{

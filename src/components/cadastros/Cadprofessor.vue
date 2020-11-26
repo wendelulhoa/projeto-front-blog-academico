@@ -1,5 +1,6 @@
 <template>
   <div class="p-2">
+    <form @submit.prevent="cadastrar" name="formProf">
     <div class="card">
       <div class="card-header">
         <div>
@@ -8,28 +9,28 @@
       </div>
       <div class="card-body">
         <div class="row">
+          
           <div class="col-md-6">
             <div class="form-group">
               <label class="form-label">Nome</label>
               <input
                 type="text"
                 class="form-control"
-                name="example-text-input"
+                name="nome"
                 placeholder="Nome"
-                v-model="data.nome"
               />
             </div>
             <div class="form-group">
               <label class="form-label">cpf</label>
-              <input type="text" class="form-control" placeholder="CPF" v-model="data.cpf"/>
+              <input type="text" class="form-control" placeholder="CPF" name="cpf"/>
             </div>
             <div class="form-group">
               <label class="form-label">RG</label>
-              <input type="text" class="form-control" placeholder="RG" v-model="data.rg"/>
+              <input type="text" class="form-control" placeholder="RG" name="rg"/>
             </div>
             <div class="form-group">
               <label class="form-label">ENDERECO</label>
-              <input type="text" class="form-control" placeholder="ENDERECO" v-model="data.endereco"/>
+              <input type="text" class="form-control" placeholder="ENDERECO" name="endereco"/>
             </div>
             <div class="form-group">
               <label class="form-label">COMPLEMENTO</label>
@@ -37,16 +38,16 @@
                 type="text"
                 class="form-control"
                 placeholder="COMPLEMENTO"
-                v-model="data.complemento"
+                name="complemento"
               />
             </div>
             <div class="form-group">
               <label class="form-label">CIDADE</label>
-              <input type="text" class="form-control" placeholder="CIDADE" v-model="data.cidade"/>
+              <input type="text" class="form-control" placeholder="CIDADE" name="cidade"/>
             </div>
             <div class="form-group">
               <label class="form-label">SENHA</label>
-              <input type="text" class="form-control" placeholder="SENHA" v-model="data.password"/>
+              <input type="text" class="form-control" placeholder="SENHA" name="password"/>
             </div>
             <div class="form-group ">
               <label for="inputState">CURSOS</label>
@@ -59,11 +60,11 @@
           <div class="col-md-6">
             <div class="form-group">
               <label class="form-label">MATRICULA</label>
-              <input type="text" class="form-control" placeholder="MATRICULA" v-model="data.matricula"/>
+              <input type="text" class="form-control" placeholder="MATRICULA" name="matricula"/>
             </div>
             <div class="form-group">
               <label class="form-label">NOME MÃE</label>
-              <input type="text" class="form-control" placeholder="NOME MÃE" v-model="data.nomeMae"/>
+              <input type="text" class="form-control" placeholder="NOME MÃE" name="nomeMae"/>
             </div>
             <div class="form-group">
               <label class="form-label">DATA NASCIMENTO</label>
@@ -71,12 +72,12 @@
                 type="text"
                 class="form-control"
                 placeholder="DATA NASCIMENTO"
-                v-model="data.dataNasc"
+                name="dataNasc"
               />
             </div>
             <div class="form-group">
               <label class="form-label">BAIRRO</label>
-              <input type="text" class="form-control" placeholder="ENDERECO" v-model="data.bairro"/>
+              <input type="text" class="form-control" placeholder="ENDERECO" name="bairro"/>
             </div>
             <div class="form-group">
               <label class="form-label">ESTADO</label>
@@ -84,19 +85,17 @@
                 type="text"
                 class="form-control"
                 placeholder="COMPLEMENTO"
-                v-model="data.estado"
+                name="estado"
               />
             </div>
             <div class="form-group">
               <label class="form-label">NUMERO</label>
-              <input type="text" class="form-control" placeholder="NUMERO" v-model="data.numero"/>
+              <input type="text" class="form-control" placeholder="NUMERO" name="num"/>
             </div>
-            <div class="form-group ">
-              <label for="inputState">TURNO</label>
-              <select id="inputState" class="form-control">
-                <option>NOTURNO</option>
-                <option>MATUTINO</option>
-                <option>VESPERTINO</option>
+            <div class="form-group">
+              <label >MATERIAS</label>
+              <select name="materia" class="form-control">
+                <option  v-for="(item, index) in materias" :key="index" :value="item.cod_materia">{{item.nome_materia}}</option>
               </select>
             </div>
             </div>
@@ -104,34 +103,26 @@
         </div>
       </div>
       <div class="text-center pb-1">
-        <a  class="btn btn-primary" @click="cadastrar">salvar alterações</a>
+        <button type="submit" class="btn btn-primary" >salvar alterações</button>
       </div>
+      </form>
     </div>
 
 </template>
 
 <script>
-import Professor from '@/app/controllers/professor/ProfessorController'
+import Professor from '@/app/controllers/professor/ProfessorController';
+import {blog} from '@/app/http/axios/api/blog'
+import { mapGetters } from 'vuex';
 export default {
   data() {
     return {
-      data: {
-        nome: "",
-        matricula: "",
-        cpf: "",
-        nomeMae: "",
-        dataNasc:"",
-        rg: "",
-        password: "",
-        endereco: "",
-        complemento:"",
-        bairro: "",
-        estado: "",
-        cidade: "",
-        numero:"",
-        codMateria: "",
-      }
     }
+  },
+  computed:{
+   ...mapGetters({ 
+        materias:"getMateria"
+    })
   },
    props:{
    type:{
@@ -140,8 +131,11 @@ export default {
  },
   methods:{
     cadastrar(){
-      const cadastrar = new Professor();
-      cadastrar.cadastro(this.data);
+      const form = document.forms.namedItem("formProf");
+      const data = new FormData(form);
+      blog.create("professor/cadastro", data).then((e) => {
+        console.log(e.data);
+      });
     }
   }
 }

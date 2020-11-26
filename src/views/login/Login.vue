@@ -89,17 +89,28 @@
 
 <script>
 import { login } from "@/app/http/axios/login/login";
+import { blog } from "@/app/http/axios/api/blog";
 import ip from "@/app/http/axios/apiIp/meuIp";
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
+import {store} from "@/store/index";
 export default {
   data() {
     return {
       data: { matricula: "", password: "" }
     };
   },
+   computed:{
+   ...mapGetters({ 
+     logged:'getLogged',
+     teste:'getAdm'
+    })
+ },
   methods: {
     ...mapActions({
-      changeIsLogged: "changeIsLogged",
+      changeLogged: "changeLogged",
+      changeMatricula: "changeMatricula",
+      changeAdm: "changeAdm",
+      changeCodMateria: "changeCodMateria"
     }),
     login() {
       ip.meuIp().then((e) => {
@@ -114,8 +125,22 @@ export default {
             solid: true,
           });
           localStorage.setItem("token", e.data.access_token);
-          this.changeIsLogged(true);
-          this.$router.push("/");
+          this.changeLogged(true);
+         this.changeMatricula(e.data.user['matricula']);
+         this.changeAdm(e.data.user['adm'])
+
+        if(e.data.user['adm'] == 0){
+          this.$router.push("/admin");
+        }
+        else if(e.data.user['adm'] == 1){
+          blog.find(`professor/find?tipo=cod&matricula=${e.data.user['matricula']}`).then(e=>{
+          this.changeCodMateria(e.data[0].materia[0]['cod_materia'])
+         })
+         this.$router.push("/professor");
+        }else{
+          this.$router.push("/aluno");
+        }
+          
         })
         .catch((e) => {
           this.$bvToast.toast(

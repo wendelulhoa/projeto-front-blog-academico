@@ -18,37 +18,8 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto p-2">
-          <li class="nav-item">
-            <a href="" class="nav-link text-white current mb-3"
-              ><i class="fas fa-home text-light fa-lg mr-3"></i>Inicio
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="" class="nav-link text-white link mb-3"
-              ><i class="fas fa-address-card fa-lg mr-3"></i>Cadastro Cliente</a
-            >
-          </li>
-          <li class="nav-item">
-            <a href="" class="nav-link text-white link mb-3"
-              ><i class="fas fa-shopping-basket fa-lg mr-3"></i>cadastrar
-              Preço</a
-            >
-          </li>
-          <li class="nav-item">
-            <a href="" class="nav-link text-white link mb-3">
-              <i class="fas fa-users fa-lg mr-3"></i>clientes</a
-            >
-          </li>
-          <li class="nav-item">
-            <a href="" class="nav-link text-white link mb-3"
-              ><i class="fas fa-money-bill-wave fa-lg mr-3"></i> Pagamento</a
-            >
-          </li>
-          <li class="nav-item">
-            <a href="" class="nav-link text-white link"
-              ><i class="fas fa-sign-out-alt fa-lg mr-3"></i>Sair</a
-            >
-          </li>
+          
+          
         </ul>
       </div>
     </nav>
@@ -73,13 +44,13 @@
 
               <ul class="navbar-nav flex-column mt-4">
                 <li class="nav-item">
-                  <router-link to="/admin" v-if= "tipo == 'admin'" class="nav-link text-white current mb-3">
+                  <router-link to="/admin" v-if= "tipo == 0" class="nav-link text-white current mb-3">
                   Inicio
                   </router-link>
-                  <router-link to="/admin" v-if= "tipo == 'professor'" class="nav-link text-white current mb-3">
+                  <router-link to="/professor" v-if= "tipo == 1" class="nav-link text-white current mb-3">
                   Inicio
                   </router-link>
-                  <router-link to="/admin" v-if= "tipo == 'aluno'" class="nav-link text-white current mb-3">
+                  <router-link to="/aluno" v-if= "tipo == 2" class="nav-link text-white current mb-3">
                   Inicio
                   </router-link>
                 </li>
@@ -87,22 +58,22 @@
                   <router-link
                     class="nav-link text-white link mb-3"
                     to="/admin/cadastro"
-                    v-if= "tipo == 'admin'"
-                    >Cadastro
+                    v-if= "tipo == 0"
+                    >Cadastros
                   </router-link
                   >
                   <router-link
                     class="nav-link text-white link mb-3"
                     to="/professor/cadastro"
-                    v-if= "tipo == 'professor'"
+                    v-if= "tipo == 1"
                     >Cadastro Atividade
                   </router-link
                   >
                   <router-link
                     class="nav-link text-white link mb-3"
-                    to="/admin/cadastro"
-                    v-if= "tipo == 'aluno'"
-                    >Cadastro
+                    to="/aluno/materias"
+                    v-if= "tipo == 2"
+                    >materias 
                   </router-link
                   >
                 </li>
@@ -110,29 +81,28 @@
                   <router-link
                     class="nav-link text-white link mb-3"
                     to="/admin/cadastro"
-                    >Alterar
+                    v-if= "tipo == 0"
+                    >sair
                   </router-link
                   >
-                </li>
-                <li class="nav-item">
+                  <router-link
+                    class="nav-link text-white link mb-3"
+                    to="/professor/cadastro"
+                    v-if= "tipo == 1"
+                    >sair
+                  </router-link
+                  >
                   <router-link
                     class="nav-link text-white link mb-3"
                     to="/admin/cadastro"
-                    >bloquear
+                    v-if= "tipo == 2"
+                    >sair
                   </router-link
                   >
                 </li>
-                <li class="nav-item">
-                  <a href="" class="nav-link text-white link mb-3"
-                    ><i class="fas fa-money-bill-wave fa-lg mr-3"></i>
-                    Pagamento</a
-                  >
-                </li>
-                <li class="nav-item">
-                  <a href="" class="nav-link text-white link"
-                    ><i class="fas fa-sign-out-alt fa-lg mr-3"></i>Sair</a
-                  >
-                </li>
+                
+               
+                
               </ul>
             </div>
           </div>
@@ -145,7 +115,7 @@
 export default {
   props:{
     tipo:{
-      type: String
+      type: Number
     }
   }
 }

@@ -18,7 +18,7 @@
                 placeholder="Nome materia"
                 v-model="data.nomeMateria"
               />
-            </div>  
+            </div>
           </div>
 
           <div class="col-md-6">
@@ -31,7 +31,6 @@
                 v-model="data.codMateria"
               />
             </div>
-
           </div>
         </div>
       </div>
@@ -40,30 +39,45 @@
       </div>
     </div>
   </div>
-
 </template>
 
 <script>
-import Admin from '@/app/controllers/admin/AdminController'
+import Admin from "@/app/controllers/admin/AdminController";
+import cors from "cors";
 export default {
   data() {
     return {
       data: {
-          codMateria: "",
-          nomeMateria: ""
-      }
-    }
+        codMateria: "",
+        nomeMateria: "",
+      },
+    };
   },
-   props:{
-   type:{
-     Type: String,
-   }
- },
-  methods:{
-    cadastrar(){
+  props: {
+    type: {
+      Type: String,
+    },
+  },
+  methods: {
+    cadastrar() {
+    //   const options = {
+    //     method: "POST",
+    //     body: JSON.stringify(this.data)
+    //   };
+    //   //options['headers']= cors.apply({'Authorization':'Bearer'})
+    //  const headers ={
+    //       'a': 'a'
+    //     };
+    //   fetch(
+    //     "https://unintelligent-sharp.000webhostapp.com/api/admin/cadastro/materia",
+    //     options,
+    //     headers
+    //   ).then((e) => {
+    //     console.log("aa");
+    //   });
       const cadastrar = new Admin();
       cadastrar.cadMateria(this.data);
-    }
-  }
-}
+    },
+  },
+};
 </script>

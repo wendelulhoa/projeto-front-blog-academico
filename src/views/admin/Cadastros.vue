@@ -5,7 +5,7 @@
       <b-tab title="cadastro aluno" active>
         <b-card-text><CadAluno/></b-card-text>
       </b-tab>
-      <b-tab title="cadastro professor">
+      <b-tab title="cadastro professor" @click="materias()">
         <b-card-text><CadProfessor/></b-card-text>
       </b-tab>
       <b-tab title="cadastro administrador">
@@ -28,7 +28,9 @@ import CadMateria from "@/components/cadastros/CadMateria";
 import CadCurso from "@/components/cadastros/CadCurso";
 import CadAdmin from "@/components/cadastros/CadAdmin";
 import CadAluno from "@/components/cadastros/CadAluno";
-import CadProfessor from "@/components/cadastros/Cadprofessor"
+import CadProfessor from "@/components/cadastros/Cadprofessor";
+import {mapActions, mapGetters} from "vuex";
+import {blog} from "@/app/http/axios/api/blog"
 export default {
   components: {
     CadMateria,
@@ -37,5 +39,17 @@ export default {
     CadAluno,
     CadProfessor
   },
+
+  methods:{
+    ...mapActions({
+      changeMateria: "changeMateria"
+    }),
+    materias(){
+      blog.find('admin/buscar?tipo=materia').then(e=>{
+        console.log('aa')
+        this.changeMateria(e.data.data)
+      })
+    }
+  }
 };
 </script>

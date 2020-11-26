@@ -1,17 +1,17 @@
 <template>
     <div>
   <div class="col-md-9 col-lg-9 col-xl-10 col-sm-10 ml-auto">
-    <CardMateria />
+   <TimeLine/>
   </div>
   
   </div>
 </template>
 
 <script>
-import CardMateria from "@/components/aluno/cardMateria";
+import TimeLine from "@/components/aluno/TimeLine"
 export default {
   components: {
-    CardMateria
+    TimeLine
   },
 };
 </script>

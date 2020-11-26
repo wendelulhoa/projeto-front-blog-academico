@@ -16,7 +16,7 @@
 .card-turma-head h3{
     font-family: 'Open Sans', Arial, sans-serif;
     font-weight: 300;
-    margin-top: 20px;
+    margin-top: 1px;
     padding: 0 20px;
     margin-bottom: 10px; 
     color: #3568b2;
@@ -56,7 +56,7 @@
   color:#888888;
 }
 .icone-card{
-  width: 100%;
+  width: 5%;
   background-color: #7dacef;
   min-height: 88px;
   color: #fff;
