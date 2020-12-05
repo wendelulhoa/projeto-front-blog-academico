@@ -32,6 +32,7 @@
 
 ## tela que exibi as materias
 <img src="./imagens_projeto/materias.png">
+![GitHub Logo](/imagens_projeto/materias.png)
 
 ## timeline atividades
 <img src="./imagens_projeto/timeline.png">
