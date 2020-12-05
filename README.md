@@ -14,25 +14,26 @@
 
 # tela admin
 ## tela de cadastro
-<img src="./imagens_projeto/admin.png">
+<img src="https://raw.githubusercontent.com/wendelulhoa/projeto-front-blog-academico/main/imagens_projeto/admin.PNG">
 
 ## tela de exibição de dados
-<img src="./imagens_projeto/dados.png">
+<img src="https://raw.githubusercontent.com/wendelulhoa/projeto-front-blog-academico/main/imagens_projeto/dados.PNG">
 
 # tela professor
 ## central de dados para o professor
-<img src="./imagens_projeto/dadoProfessor.png">
+<img src="https://raw.githubusercontent.com/wendelulhoa/projeto-front-blog-academico/main/imagens_projeto/dadoProfessor.PNG">
 
 ## cadastro de materias
-<img src="./imagens_projeto/cadastraMateria.png">
+<img src="https://raw.githubusercontent.com/wendelulhoa/projeto-front-blog-academico/main/imagens_projeto/cadastraMateria.PNG">
 
 # tela aluno
 ## tela que exibi o boletim
-<img src="./imagens_projeto/boletim.png">
+<img src="https://raw.githubusercontent.com/wendelulhoa/projeto-front-blog-academico/main/imagens_projeto/boletim.PNG">
 
 ## tela que exibi as materias
-<img src="./imagens_projeto/materias.png">
-![GitHub Logo](/imagens_projeto/materias.png)
+<img src="https://raw.githubusercontent.com/wendelulhoa/projeto-front-blog-academico/main/imagens_projeto/materias.PNG">
 
+## timeline atividades
+<img src="https://raw.githubusercontent.com/wendelulhoa/projeto-front-blog-academico/main/imagens_projeto/timeline.PNG">
 ## timeline atividades
 <img src="./imagens_projeto/timeline.png">
