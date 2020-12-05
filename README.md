@@ -1,5 +1,5 @@
 # instruções para utilização do projeto
-
+## projeto feito em vue js com type-script, laravel com autenticação jwt e banco de dados mysql.
 ## para utilizar o projeto deverá baixar a versão back-end em laravel nesse repositorio: https://github.com/wendelulhoa/projeto-back-blog-academico.git
 
 ## lá terá as instruções como instalar o back-end
