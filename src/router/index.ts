@@ -75,7 +75,8 @@ const router = new VueRouter({
   routes
 });
 router.beforeEach((to, from, next) => {
-  const isAuthenticated = store.getters.getLogged;
+  // const isAuthenticated = store.getters.getLogged;
+  const isAuthenticated = true;
   if (to.name !== 'login' && !isAuthenticated) next({ name: 'login' })
   else{
     store.commit('setLogged',localStorage.getItem('isLogged'))

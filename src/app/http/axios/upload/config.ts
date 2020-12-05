@@ -2,7 +2,7 @@ import axios from 'axios'
 
 
 export const http = axios.create({
-    baseURL: 'http://localhost:8000/api',
+    baseURL: 'https://wendelulhoa.tk/api/',
     headers:{
         'Authorization': 'Bearer ',
         'Content-type': 'multipart/form-data'

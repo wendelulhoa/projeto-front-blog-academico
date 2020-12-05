@@ -18,7 +18,44 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto p-2">
-          
+          <li class="nav-item">
+                  <router-link to="/admin" v-if= "tipo == 0" class="nav-link text-white current mb-3">
+                  Inicio
+                  </router-link>
+                  <router-link to="/professor" v-if= "tipo == 1" class="nav-link text-white current mb-3">
+                  Inicio
+                  </router-link>
+                  <router-link to="/aluno" v-if= "tipo == 2" class="nav-link text-white current mb-3">
+                  Inicio
+                  </router-link>
+                </li>
+                <li class="nav-item">
+                  <router-link
+                    class="nav-link text-white link mb-3"
+                    to="/admin/cadastro"
+                    v-if= "tipo == 0"
+                    >Cadastros
+                  </router-link
+                  >
+                  <router-link
+                    class="nav-link text-white link mb-3"
+                    to="/professor/cadastro"
+                    v-if= "tipo == 1"
+                    >Cadastro Atividade
+                  </router-link
+                  >
+                  <router-link
+                    class="nav-link text-white link mb-3"
+                    to="/aluno/materias"
+                    v-if= "tipo == 2"
+                    >materias 
+                  </router-link
+                  >
+                </li>
+                <li class="nav-item">
+                  <a href="/login" class="nav-link text-white link mb-3" @click="sair">sair</a>
+                </li>
+               
           
         </ul>
       </div>
@@ -48,7 +85,7 @@
                   Inicio
                   </router-link>
                   <router-link to="/professor" v-if= "tipo == 1" class="nav-link text-white current mb-3">
-                  Inicio
+                   Inicio
                   </router-link>
                   <router-link to="/aluno" v-if= "tipo == 2" class="nav-link text-white current mb-3">
                   Inicio

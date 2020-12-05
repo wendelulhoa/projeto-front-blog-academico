@@ -33,8 +33,9 @@
                     <td v-if="tipo == 'atividades'">{{item.nome_aluno}}</td>
                     <td v-if="tipo == 'atividades'">{{ item.matricula_aluno }}</td>
                     <td v-if="tipo == 'atividades'">{{ item.data }}</td>
+                    <td v-if="tipo == 'atividades'"><a type="button" :href="link" @click="linkAtividade(item.path_atividade)" class="btn btn-success  mb-1">baixar atividade</a></td>
                     <td>
-                      <ModalAtividade :id ="item.id"/>
+                      <ModalAtividade v-if="tipo == 'atividade'" :id ="item.id"/>
                     </td>
                   </tr>
                 </tbody>
@@ -56,6 +57,11 @@ export default {
   components:{
     ModalAtividade
   },
+  data() {
+    return {
+      link: ""
+    }
+  },
  props:{
    arrayContent:{
      type: Array
@@ -64,9 +70,10 @@ export default {
      type: String
    }
    },
+   
    methods: {
-     atividade(){
-       console.log('aaa')
+    linkAtividade(path){
+      this.link = "http://localhost:8000/api/"+ path;
      }
    },
 };
